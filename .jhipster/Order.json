@@ -1,0 +1,54 @@
+{
+    "name": "Order",
+    "fields": [
+        {
+            "fieldName": "totalPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "OrderStatus",
+            "fieldValues": "CREATE,ORDER,PREPARE,SERVE,PAY"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "productOrder",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "listProductOrder"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "formulaOrder",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "listFormulaOrder"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "restaurantTable",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "listTable"
+        }
+    ],
+    "changelogDate": "20200425165100",
+    "entityTableName": "order",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "ona"
+}

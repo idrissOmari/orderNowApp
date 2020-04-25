@@ -1,0 +1,36 @@
+{
+    "name": "MenuCategory",
+    "fields": [
+        {
+            "fieldName": "label",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "menuCategory",
+            "relationshipName": "listProduct"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "menu",
+            "otherEntityRelationshipName": "listCategory",
+            "relationshipName": "menu",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200425164900",
+    "entityTableName": "menu_category",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "ona"
+}

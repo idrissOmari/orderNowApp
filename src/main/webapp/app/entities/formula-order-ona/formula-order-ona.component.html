@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Formula Orders</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-formula-order-ona" [routerLink]="['/formula-order-ona/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Formula Order
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="formulaOrders?.length === 0">
+        <span>No formulaOrders found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="formulaOrders?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Quantity</span></th>
+                    <th scope="col" ><span>List Product</span></th>
+                    <th scope="col" ><span>Order</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let formulaOrder of formulaOrders ;trackBy: trackId">
+                    <td><a [routerLink]="['/formula-order-ona', formulaOrder.id, 'view']">{{ formulaOrder.id }}</a></td>
+                    <td>{{ formulaOrder.quantity }}</td>
+                    <td>
+                        <span *ngFor="let listProduct of formulaOrder.listProducts; let last = last">
+                            <a class="form-control-static" [routerLink]="['/product-ona', listProduct?.id, 'view']">{{ listProduct.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div *ngIf="formulaOrder.orderId">
+                            <a [routerLink]="['/order-ona', formulaOrder.orderId , 'view']" >{{ formulaOrder.orderId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/formula-order-ona', formulaOrder.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/formula-order-ona', formulaOrder.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(formulaOrder)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

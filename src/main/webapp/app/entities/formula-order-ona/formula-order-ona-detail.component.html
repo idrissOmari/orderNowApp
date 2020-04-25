@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="formulaOrder">
+            <h2><span>Formula Order</span> {{ formulaOrder.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Quantity</span></dt>
+                <dd>
+                    <span>{{ formulaOrder.quantity }}</span>
+                </dd>
+                <dt><span>List Product</span></dt>
+                <dd>
+                    <span *ngFor="let listProduct of formulaOrder.listProducts; let last = last">
+                        <a [routerLink]="['/product-ona', listProduct?.id, 'view']">{{ listProduct.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span>Order</span></dt>
+                <dd>
+                    <div *ngIf="formulaOrder.orderId">
+                        <a [routerLink]="['/order-ona', formulaOrder.orderId, 'view']">{{ formulaOrder.orderId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/formula-order-ona', formulaOrder.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

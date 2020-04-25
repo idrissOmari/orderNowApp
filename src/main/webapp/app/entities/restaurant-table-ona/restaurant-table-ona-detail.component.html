@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="restaurantTable">
+            <h2><span>Restaurant Table</span> {{ restaurantTable.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>T Number</span></dt>
+                <dd>
+                    <span>{{ restaurantTable.tNumber }}</span>
+                </dd>
+                <dt><span>T Status</span></dt>
+                <dd>
+                    <span>{{ restaurantTable.tStatus }}</span>
+                </dd>
+                <dt><span>Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="restaurantTable.restaurantId">
+                        <a [routerLink]="['/restaurant-ona', restaurantTable.restaurantId, 'view']">{{ restaurantTable.restaurantId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Order</span></dt>
+                <dd>
+                    <div *ngIf="restaurantTable.orderId">
+                        <a [routerLink]="['/order-ona', restaurantTable.orderId, 'view']">{{ restaurantTable.orderId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/restaurant-table-ona', restaurantTable.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span>Formulas</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-formula-ona" [routerLink]="['/formula-ona/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Formula
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="formulas?.length === 0">
+        <span>No formulas found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="formulas?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Label</span></th>
+                    <th scope="col" ><span>Price</span></th>
+                    <th scope="col" ><span>Menu</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let formula of formulas ;trackBy: trackId">
+                    <td><a [routerLink]="['/formula-ona', formula.id, 'view']">{{ formula.id }}</a></td>
+                    <td>{{ formula.label }}</td>
+                    <td>{{ formula.price }}</td>
+                    <td>
+                        <div *ngIf="formula.menuId">
+                            <a [routerLink]="['/menu-ona', formula.menuId , 'view']" >{{ formula.menuId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/formula-ona', formula.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/formula-ona', formula.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(formula)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

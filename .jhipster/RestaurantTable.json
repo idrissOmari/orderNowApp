@@ -1,0 +1,42 @@
+{
+    "name": "RestaurantTable",
+    "fields": [
+        {
+            "fieldName": "tNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tStatus",
+            "fieldType": "TableStatus",
+            "fieldValues": "OPEN,CLOSE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "restaurant",
+            "otherEntityRelationshipName": "listTables",
+            "relationshipName": "restaurant",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "order",
+            "otherEntityRelationshipName": "listTable",
+            "relationshipName": "order",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200425164600",
+    "entityTableName": "restaurant_table",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "ona"
+}

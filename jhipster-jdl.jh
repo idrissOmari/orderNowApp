@@ -1,0 +1,102 @@
+
+
+
+entity Restaurant {
+	nom String,
+    tel String,
+    email String,
+    description String,
+}
+
+entity Address {
+	adresse1 String,
+    adresse2 String,
+    postalCode Integer,
+    city String,
+    country String,
+}
+
+entity RestaurantTable {
+	tNumber Integer,
+    tStatus TableStatus,
+}
+entity Menu {
+    tittle String,
+}
+
+entity Formula {
+	label String,
+    price BigDecimal,
+}
+
+entity MenuCategory {
+	label String,
+}
+
+entity Product {
+	name String,
+    price BigDecimal,
+}
+
+entity Order {
+	totalPrice BigDecimal,
+    status OrderStatus,
+    createDate Instant,
+	updateDate Instant,
+}
+
+entity ProductOrder {
+    quantity Integer
+}
+
+entity FormulaOrder {
+	quantity Integer
+}
+
+enum OrderStatus {
+	CREATE,
+    ORDER,
+    PREPARE,
+    SERVE,
+    PAY
+}
+
+enum TableStatus {
+	OPEN,
+    CLOSE
+}
+
+relationship OneToOne {
+	Restaurant{address} to Address
+}
+
+relationship ManyToOne {
+	ProductOrder{product} to Product
+}
+
+relationship ManyToMany {
+	FormulaOrder{listProduct} to Product{listFormula}
+}
+
+relationship OneToMany {
+	Restaurant{listTables} to RestaurantTable
+    Restaurant{listMenu} to Menu
+    
+    Menu{listFormule} to Formula
+    Menu{listCategory} to MenuCategory
+    
+    MenuCategory{listProduct} to Product
+    Formula{listProduct} to Product
+    
+    Order{listProductOrder} to ProductOrder
+    Order{listFormulaOrder} to FormulaOrder
+    Order{listTable} to RestaurantTable
+}
+
+paginate Order with pagination
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except TableStatus, OrderStatus
+
+angularSuffix * with ona

@@ -1,0 +1,42 @@
+{
+    "name": "Menu",
+    "fields": [
+        {
+            "fieldName": "tittle",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "formula",
+            "otherEntityRelationshipName": "menu",
+            "relationshipName": "listFormule"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "menuCategory",
+            "otherEntityRelationshipName": "menu",
+            "relationshipName": "listCategory"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "restaurant",
+            "otherEntityRelationshipName": "listMenu",
+            "relationshipName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200425164700",
+    "entityTableName": "menu",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "ona"
+}
